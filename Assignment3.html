@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Location</title>
+	<meta name="viewport" content="initial-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="Assignment1.css">
+
+	<style>
+		
+		#map {
+
+			height: 50%;
+			
+		}
+		html,body{
+			height: 100%;
+			margin: 3000;
+			padding: 3000;
+		}
+	</style>
+
+    <script src="main.js"></script>
+
+	<script src="prefixfree.min.js"></script>
+
+	<title class="title">Assignment 1</title>
+
+
+	<script src="Modernizr.js"></script>
+
+	<script src="Modernizr-custom.js"></script>
+
+	
+	    <script>
+		      if (Modernizr.geolocation) {
+               alert(' Geolocation Supported ')
+               } else {
+               alert(' Geolocation Not Supported ')
+               }
+	    </script>
+
+
+        <script>
+	           if (Modernizr.progressbar_meter) {
+                alert(' Progressbar_meter Supported ')
+               } else {
+               alert('Progressbar_meter Not Supported ')
+               }
+               </script>
+
+      <style>
+      .password{
+	
+	  text-security: circle;
+      }
+      </style>
+
+       <style>
+      .comments{
+	  text-fill-color:red;
+      }
+      </style>
+
+</head>
+<body> 
+
+<form>
+
+		
+		<h1>Assignment 2 Part 3</h1>
+		<h2>Registration Form</h2>
+
+		      <div>
+
+			        <label>Name</label>
+			        <input type="text" name="Name" id="Name" required="">
+
+		      </div>
+
+
+
+		      <div>
+
+			       <label>Email</label>
+			       <input type="Email" name="Email" id="Email" required="">
+
+		     </div>
+	
+
+	         <div>
+
+                   <label>Personal URL</label>
+		           <input type="url" name="Personal url">
+	
+            </div>
+		
+		    <div>
+
+                   <label>Birth date</label>
+		           <input type="date" name="D o B">
+	
+            </div>
+		
+		    <div>
+
+                  <label>Gender</label>
+		          <input type="radio" name="Gender">Male
+	              <input type="radio" name="Gender">Female
+
+		   </div>
+		
+		   <div>
+
+                 <label>comments</label>
+		         <textarea id="comments" value="comments" class="comments" name="comments"></textarea> 
+	
+           </div>
+
+           <div>
+
+			        <label>Password</label>
+			        <input type="text" value="password" class="password" >
+			   
+			   		      </div>
+			   
+			   		 
+			   		
+			   		   <div>
+			   
+			                   <label id="Confirm">Confirm that the data entered are fictitious</label>
+			   		        <input type="checkbox" name="">
+			   	    
+			   
+			   		   </div>
+			   		
+			   		   <div>
+			   
+			                  <button>Clear All</button>
+			   
+			   		   </div>
+			   
+
+
+	</form>
+	
+	
+
+	<div id="object"></div>
+	<script src="hammer.js">
+
+	var mc = new Hammer.Manager(myElement);
+
+
+var mc = new Hammer.Manager(myElement, {
+	recognizers: [
+		// RecognizerClass, [options], [recognizeWith, ...], [requireFailure, ...]
+		[Hammer.Rotate],
+		[Hammer.Pinch, { enable: false }, ['rotate']],
+		[Hammer.Swipe,{ direction: Hammer.DIRECTION_HORIZONTAL }],
+	]
+});
+
+	</script>
+
+	<div id="map"></div>
+		<p>Click the button to get your coordinates.</p>
+
+<button onclick="getLocation()">See My Location</button>
+
+<p id="demo"></p>
+        <script>
+var x = document.getElementById("demo");
+
+function showError(a){switch(a.code){case a.PERMISSION_DENIED:x.innerHTML="User denied the request for Geolocation.";break;case a.POSITION_UNAVAILABLE:x.innerHTML="Location information is unavailable.";break;case a.TIMEOUT:x.innerHTML="The request to get user location timed out.";break;case a.UNKNOWN_ERROR:x.innerHTML="An unknown error occurred."}};
+
+function showPosition(a){a="https://maps.googleapis.com/maps/api/staticmap?center= "+(a.coords.latitude+","+a.coords.longitude)+"&zoom=14&size=400x300&sensor=false&key=AIzaSyAxX8TuwFsOR-JXoo3xH-M7-ZMl-i2u2Dg";document.getElementById("mapholder").innerHTML="<img src='"+a+"'>"};
+
+function getLocation(){navigator.geolocation?navigator.geolocation.getCurrentPosition(showPosition):x.innerHTML="Geolocation is not supported by this browser."};
+
+function showPosition(a){x.innerHTML="Latitude: "+a.coords.latitude+"<br>Longitude: "+a.coords.longitude};
+
+
+		var map;
+		function initMap() {
+			map = new
+			google.maps.Map(document.getElementById('map'),{
+				center : {lat : 43.780327996661185,lng : -79.25942427750118},
+				zoom :16
+			});
+		}
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxX8TuwFsOR-JXoo3xH-M7-ZMl-i2u2Dg&callback=initMap" async defer>
+
+	</script>
+
+<h2>Battery level: <spam id="level"></spam></h2>
+	<h2>Is Charging: <spam id="isCharging"></spam></h2>
+	<button onclick= "getStatics()"> Battery level</button>
+
+</body>
+<script>
+	async function getStatics(){
+
+    let bMan = await navigator.getBattery();
+    console.log(bMan);
+    document.querySelector('#level').innerHTML = (bMan.level * 100) + "%";
+    document.querySelector('#isCharging').innerHTML = bMan.charging ? "Charging" : "Not Charging";
+}			
+</script>
+
+<h2>Vibration </h2>
+<button class="button" onclick="vibrate(1000)">Vibrate Single</button>
+<button class="button" onclick="vibratePattern()">Vibrate Pattern</button>
+
+<script>
+	function vibrate(ms){
+		navigator.vibrate(ms)
+	}
+	function vibratePattern(){
+		navigator.vibrate([300,100,300,100,300])
+	}
+</script>
+
+</html>

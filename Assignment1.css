@@ -1,0 +1,38 @@
+<script src="main.js"></script
+
+body {
+
+  
+  border-radius: 5px;	
+  background-size: 100% 100%;
+  position: relative;
+  display: inline-block;
+}
+
+@media screen and (min-width: 400px) {
+  body {
+    background-color: lightgreen;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  body {
+    background-color: lavender;
+  }
+}
+
+	
+
+label{
+	width: 150px;
+	display: inline-block;
+}
+
+#Confirm{
+
+	width: 150px;
+	display: inline-block;
+	line-clamp:2;
+	left: 150px;
+
+}
